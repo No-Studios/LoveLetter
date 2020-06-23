@@ -9,6 +9,9 @@ public class cameraScript : MonoBehaviour
     private Animation cameraShift;
     private bool down = true;
 
+    public GameObject windowUi;
+    public GameObject deskUi;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -22,21 +25,30 @@ public class cameraScript : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.UpArrow) & down == true)
         {
+            windowUi.SetActive(false);
+            deskUi.SetActive(true);
             //Debug.Log("u");
             cameraShift["camera"].normalizedTime = 0.0f;
             
             //cameraShift["camera"].normalizedSpeed = 1.0f;
             cameraShift.Play("camera");
-            
+            while (cameraShift["camera"].normalizedTime <= 0.5f)
+            {
+
+            }
+            cameraShift.Stop("camera");
             //cameraShift.Stop();
-            
+
             down = false;
 
         }
 
         if (Input.GetKeyDown(KeyCode.DownArrow) & down == false)
         {
-           // Debug.Log("d");
+            // Debug.Log("d");
+            windowUi.SetActive(true);
+            deskUi.SetActive(false);
+
             cameraShift["camera"].normalizedTime = 0.5f;
 
             //cameraShift["camera"].normalizedSpeed = 1.0f;
