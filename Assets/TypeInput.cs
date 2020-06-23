@@ -38,6 +38,14 @@ public class TypeInput : MonoBehaviour
         {
             foreach (char letter in Input.inputString)
             {
+                Debug.Log(orderNum + " : " + letter);
+                if (currentChar == txtPnl.panel_text.text.Length - 1)
+                {
+                    //GameManager.instance.change_input_panel = orderNum + 1;
+                    GameManager.instance.ActivatePanel(orderNum + 1, false);
+                    break;
+
+                }
                 if (letter == '\b') // has backspace/delete been pressed?
                 {
                     if (text.text.Length != 0)
@@ -47,10 +55,18 @@ public class TypeInput : MonoBehaviour
                         //text.text = text.text.Substring(0, text.text.Length - 1);
                         currentChar--;
                     }
+                    
+                    if(orderNum != 0 && text.text.Length == 0)
+                    {
+                        GameManager.instance.ActivatePanel(orderNum - 1, true);
+                        break; 
+                    }
                 }
                 else
                 {
-                    if(letter != txtPnl.panel_text.text[currentChar])
+
+
+                    if (letter != txtPnl.panel_text.text[currentChar])
                     {
                         typedLetters.Add("<color=red>" + letter + "</color>");
                     }
@@ -58,6 +74,8 @@ public class TypeInput : MonoBehaviour
                     {
                         typedLetters.Add("" + letter);
                     }
+
+
                     //typedLetters.Add(""+letter);
                     //typedDisplay.Add("" + letter);
                     currentChar++;
@@ -102,5 +120,11 @@ public class TypeInput : MonoBehaviour
             }*/
 
         }
+    }
+
+    public void RemoveLast()
+    {
+        typedLetters.RemoveAt(typedLetters.Count - 1);
+        currentChar--;
     }
 }

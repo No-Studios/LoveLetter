@@ -236,6 +236,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1393004140}
   - component: {fileID: 1393004139}
+  - component: {fileID: 1393004141}
   m_Layer: 0
   m_Name: GameObject
   m_TagString: Untagged
@@ -256,6 +257,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   input_panels: []
+  current_input_panel: 0
+  change_input_panel: 0
   txtHanlder: {fileID: 1686963221}
 --- !u!4 &1393004140
 Transform:
@@ -271,6 +274,20 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1393004141
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1393004138}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 84e3db76b14a6a448a34a7e64207efb2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fileName: paratempt
+  parsedWords: []
 --- !u!1 &1686963217
 GameObject:
   m_ObjectHideFlags: 0
@@ -375,6 +392,8 @@ MonoBehaviour:
   - buy
   template_panel: {fileID: 3574601244013869735, guid: 2a8e96d52f6b8574aa04f941914efc09,
     type: 3}
+  wp: {fileID: 1393004141}
+  tmptext: {fileID: 0}
 --- !u!114 &1686963222
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -7,15 +7,18 @@ public class TextHandler : MonoBehaviour
 
     public GameObject parent; 
     public TextPanel panel;
-    public string[] words = {"yo", "bling", "blick", "bah", "hi", "why", "guy", "die!", "fry", "buy" };
+    public List<string> words;
     int current_word_index = 0;
     int current_space_index = 0; 
     bool panel_start = true;
-    public GameObject template_panel; 
+    public GameObject template_panel;
+    public WritingParser wp; 
     private GameObject current_panel;
     int panel_count = 0;
 
     List<int> space_in_line;
+
+    public TMP_Text tmptext; 
 
 
 
@@ -24,9 +27,17 @@ public class TextHandler : MonoBehaviour
     void Start()
     {
         //InvokeRepeating("AddToPanel", 1f, .25f);
+        //words = wp.parsedWords; 
+        words = new List<string>();
+ 
+        foreach(string w in wp.parsedWords)
+        {
+            words.Add(w);
+            
+        }
 
-        
-        while (current_word_index < words.Length)
+
+        while (current_word_index < words.Count)
         {
             if (panel_start)
             {
@@ -43,10 +54,10 @@ public class TextHandler : MonoBehaviour
             }
             else
             {
-                for(int i = current_word_index; i <= words.Length; i++)
+                for(int i = current_word_index; i <= words.Count; i++)
                 {
                     current_word_index = i;
-                    if (current_word_index == words.Length)
+                    if (current_word_index == words.Count)
                     {
                         break;
                     }
@@ -57,7 +68,18 @@ public class TextHandler : MonoBehaviour
                     tempText.text += words[current_word_index];
 
                     tempText.ForceMeshUpdate();
-                    if (tempText.isTextOverflowing)
+
+                    if (words[current_word_index].Contains("\n"))
+                    {
+                        string[] b = words[current_word_index].Split('\n');
+                        panel.panel_text.text = beforeChange + b[0];
+                        words.Insert(current_word_index + 1, b[1]);
+                        panel_start = true;
+                        panel_count++;
+                        current_word_index++;
+                        break;
+                    }
+                    else if (tempText.isTextOverflowing  && !words[current_word_index].Contains("\n"))
                     {
                         Debug.Log("Overflow at " + words[current_word_index]);
                         panel.panel_text.text = beforeChange;
@@ -68,30 +90,20 @@ public class TextHandler : MonoBehaviour
                         panel_count++; 
                         break; 
                     }
+
                     
 
-                    if(i != words.Length - 1)
+                    if(i != words.Count - 1)
                     {
                         panel.panel_text.text += " ";
-                       /*
-                        Debug.Log(current_word_index);
-                        if (current_space_index == 0)
-                        {
-                            space_in_line.Add(words[current_word_index].Length);
-                        }
-                        else
-                        {
-                            Debug.Log("space in line: " + space_in_line.Count + " / " + current_space_index);
-                            Debug.Log("words: " + words.Length + "/" + current_word_index);
-                            space_in_line.Add(words[current_word_index].Length + space_in_line[current_space_index] + 1);
-                            current_space_index++;
-                        }
-                       */
-                        //Debug.Log("Text overflowing = " + panel.panel_text.isTextOverflowing);
                     }
 
                     panel.panel_text = tempText;
 
+                }
+                if(current_word_index == 150) 
+                {
+                    break;
                 }
 
             }
@@ -101,59 +113,7 @@ public class TextHandler : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        /*
-        while (current_word_index < words.Length)
-        {
-            if (panel_start)
-            {
-                Debug.Log("Create");
-                panel_start = false;
-                current_panel = Instantiate(template_panel);
 
-                current_panel.transform.SetParent(parent.transform, false);
-                panel = current_panel.GetComponent<TextPanel>();
-
-            }
-            else
-            {
-                for (int i = current_word_index; i < words.Length; i++)
-                {
-                    current_word_index = i;
-                    //Debug.Log(panel);
-                    TMP_Text tempText = panel.panel_text;
-                    tempText.text += words[current_word_index];
-
-                    if (tempText.isTextOverflowing)
-                    {
-                        Debug.Log("Overflow at " + words[current_word_index]);
-
-                        //current_word_index -= 1; 
-                        panel_start = true;
-                        break;
-                    }
-
-
-                    if (i != words.Length - 1)
-                    {
-                        panel.panel_text.text += " ";
-                        Debug.Log("Text overflowing = " + panel.panel_text.isTextOverflowing);
-                    }
-
-                    panel.panel_text = tempText;
-
-                    if (panel.panel_text.isTextOverflowing)
-                    {
-                        Debug.Log("Overflow at " + words[current_word_index]);
-                    }
-                }
-                if (current_word_index == words.Length - 1)
-                {
-                    current_word_index = words.Length;
-       
-                }
-
-            }
-        }*/
     }
 
     public void AddToPanel()

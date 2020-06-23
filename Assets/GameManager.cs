@@ -6,7 +6,11 @@ public class GameManager : MonoBehaviour
 {
 
     public TypeInput[] input_panels;
+    [SerializeField]
     int current_input_panel = 0;
+    [SerializeField]
+    public int change_input_panel = 0;
+    TypeInput current_panel;
 
     bool input_panels_found = false;
     public List<List<int>> space_breaks;
@@ -42,6 +46,7 @@ public class GameManager : MonoBehaviour
             {
                 if(p.orderNum == 0)
                 {
+                    current_panel = p; 
                     p.isCurrentBox = true; 
                 }
             }
@@ -49,5 +54,46 @@ public class GameManager : MonoBehaviour
 
         }
 
+        /*
+        if(current_input_panel != change_input_panel)
+        {
+            input_panels[current_input_panel].isCurrentBox = false;
+
+            TypeInput foundpanel = FindPanel(change_input_panel);
+
+
+            
+            current_input_panel = change_input_panel;
+            foundpanel.isCurrentBox = true; 
+
+        }
+        */
     }
+
+    private TypeInput FindPanel(int orderNum)
+    {
+        foreach(TypeInput t in input_panels)
+        {
+            if(t.orderNum == orderNum)
+            {
+                return t; 
+            }
+        }
+        return null; 
+    }
+    
+    public void ActivatePanel(int orderNum, bool backwards)
+    {
+        current_panel.isCurrentBox = false; 
+        current_input_panel = orderNum;
+        current_panel = FindPanel(orderNum);
+        current_panel.isCurrentBox = true; 
+        if (backwards)
+        {
+            //current_panel.currentChar--;
+            current_panel.RemoveLast();
+        }
+    }
+
+    
 }
