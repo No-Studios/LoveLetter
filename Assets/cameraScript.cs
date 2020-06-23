@@ -8,7 +8,7 @@ public class cameraScript : MonoBehaviour
     public GameObject cam;
     private Animation cameraShift;
     private bool down = true;
-
+    bool canPress = true;
     public GameObject windowUi;
     public GameObject deskUi;
 
@@ -23,36 +23,36 @@ public class cameraScript : MonoBehaviour
     void Update()
     {
 
-        if (Input.GetKeyDown(KeyCode.UpArrow) & down == true)
+        if (Input.GetKeyDown(KeyCode.UpArrow) & down == true & canPress == true)
         {
+            canPress = false;
             windowUi.SetActive(false);
             deskUi.SetActive(true);
             //Debug.Log("u");
             cameraShift["camera"].normalizedTime = 0.0f;
-            
-            //cameraShift["camera"].normalizedSpeed = 1.0f;
-            cameraShift.Play("camera");
-            while (cameraShift["camera"].normalizedTime <= 0.5f)
-            {
 
-            }
-            cameraShift.Stop("camera");
+            //cameraShift["camera"].normalizedSpeed = 1.0f;
+            cameraShift["camera"].normalizedSpeed = .25f;
+            cameraShift.Play("camera");
+           
+            
             //cameraShift.Stop();
 
             down = false;
 
         }
 
-        if (Input.GetKeyDown(KeyCode.DownArrow) & down == false)
+        if (Input.GetKeyDown(KeyCode.DownArrow) & down == false & canPress == true)
         {
+            canPress = false;
             // Debug.Log("d");
             windowUi.SetActive(true);
             deskUi.SetActive(false);
 
             cameraShift["camera"].normalizedTime = 0.5f;
 
-            //cameraShift["camera"].normalizedSpeed = 1.0f;
-            cameraShift.Play("camera");
+            cameraShift["camera"].normalizedSpeed = .25f;
+            //cameraShift.Play("camera");
            
             //cameraShift.Stop();
             
@@ -60,6 +60,12 @@ public class cameraScript : MonoBehaviour
         }
 
 
+
+    }
+    private void stopAnim()
+    {
+        cameraShift["camera"].normalizedSpeed = 0.0f;
+        canPress = true;
 
     }
 }
