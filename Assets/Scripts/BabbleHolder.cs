@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class BabbleHolder : MonoBehaviour
 {
-    [SerializeField] private string[] _dialogue0;
-    [SerializeField] private string[] _dialogue1;
-    [SerializeField] private string[] _dialogue2;
+    [SerializeField] private string[] _dialogue0 = null;
+    [SerializeField] private string[] _dialogue1 = null;
+    [SerializeField] private string[] _dialogue2 = null;
     [HideInInspector] public int dialogueIndex = 0;
 
     // Update is called once per frame
