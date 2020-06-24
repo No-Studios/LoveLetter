@@ -1407,7 +1407,6 @@ MonoBehaviour:
   _speechBubble: {fileID: 1165531445}
   _waitTime: 1
   _bubbleWaitTime: 1.5
-  _babbleHolder: {fileID: 0}
 --- !u!114 &1165531450
 MonoBehaviour:
   m_ObjectHideFlags: 0
