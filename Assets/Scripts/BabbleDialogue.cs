@@ -9,6 +9,9 @@ public class BabbleDialogue : MonoBehaviour
     [SerializeField] private GameObject _speechBubble = null;
     [SerializeField] private float _waitTime = 0f;
     [SerializeField] private float _bubbleWaitTime = 0f;
+    [SerializeField] private int _upFontSize = 30;
+    [SerializeField] private int _downFontSize = 30;
+    [SerializeField] private float _fontLerpTime = 1.5f;
 
     private float _bubbleWait = 0f;
     private float _wait = 0f;
@@ -16,6 +19,7 @@ public class BabbleDialogue : MonoBehaviour
     private  string[] _statements;
     private Animator _speechBubbleAnim = null;
     private BabbleHolder _babbleHolder = null;
+    private bool _up = false;
     
     
     void Awake()
@@ -27,6 +31,7 @@ public class BabbleDialogue : MonoBehaviour
         _bubbleWait = _bubbleWaitTime;
         _babbleHolder = GetComponent<BabbleHolder>();
         _statements = _babbleHolder.GetDialogue();
+        _text.fontSize = _downFontSize;
         //AnimationClip clips = anim.runtimeAnimatorController.animationClips;
     }
 
@@ -52,5 +57,16 @@ public class BabbleDialogue : MonoBehaviour
             _statements = _babbleHolder.GetDialogue();
             _index = 0;
         }
+        /*if(Input.GetKeyDown(KeyCode.UpArrow) && _up == false)
+        {
+            _text.fontSize = Mathf.Lerp(_downFontSize, _upFontSize, _fontLerpTime);
+            _up = true;
+        }
+        if(Input.GetKeyDown(KeyCode.DownArrow) && _up == true){
+            if(_text.fontSize <= _downFontSize){
+                _text.fontSize++;
+            }
+            _up = false;
+        }*/
     }   
 }

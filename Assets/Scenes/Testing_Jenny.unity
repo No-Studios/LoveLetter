@@ -448,7 +448,7 @@ GameObject:
   - component: {fileID: 505429976}
   - component: {fileID: 505429975}
   m_Layer: 5
-  m_Name: Text
+  m_Name: BabbleText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
