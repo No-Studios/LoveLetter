@@ -9,15 +9,20 @@ public class BabbleDialogue : MonoBehaviour
     [SerializeField] private GameObject _speechBubble = null;
     [SerializeField] private float _waitTime = 0f;
     [SerializeField] private float _bubbleWaitTime = 0f;
+    [SerializeField] private float _minStatementWaitTime = 5f;
+    [SerializeField] private float _maxStatementWaitTime = 5f;
     
-
+    
     private float _bubbleWait = 0f;
     private float _wait = 0f;
+    private float _statementWait = 0f;
     private  string[] _statements = null;
     private Animator _speechBubbleAnim = null;
     private BabbleHolder _babbleHolder = null;
 
-    public int index = 0;
+    [HideInInspector] public int index = 0;
+
+    [HideInInspector] public bool pause = false;
     
     
     void Awake()
@@ -29,30 +34,45 @@ public class BabbleDialogue : MonoBehaviour
         _bubbleWait = _bubbleWaitTime;
         _babbleHolder = GetComponent<BabbleHolder>();
         _statements = _babbleHolder.GetDialogue();
+        _statementWait = 0;
         //AnimationClip clips = anim.runtimeAnimatorController.animationClips;
+    }
+    void Start()
+    {
+        
     }
 
     void Update()
     {   
-        if(index < _statements.Length){
-            _speechBubbleAnim.SetBool("babble", true);
-            _bubbleWait -= Time.deltaTime;
-            if(_bubbleWait <= 0f){
-                _text.gameObject.SetActive(true);
-                _text.text = _statements[index];
-                _wait -= Time.deltaTime;
-                if(_wait <= 0f){
-                    index++;
-                    _wait = _waitTime;
+        if (pause == false){
+            _statementWait -= Time.deltaTime;
+        }
+        if(_statementWait <= 0f){
+            if(index < _statements.Length && pause == false){
+                _speechBubbleAnim.SetBool("babble", true);
+                _bubbleWait -= Time.deltaTime;
+                if(_bubbleWait <= 0f){
+                    _text.gameObject.SetActive(true);
+                    _text.text = _statements[index];
+                    _wait -= Time.deltaTime;
+                    if(_wait <= 0f){
+                        index++;
+                        _wait = _waitTime;
+                    }
                 }
+            } else if (index >= _statements.Length && pause == false){
+                _speechBubbleAnim.SetBool("babble", false);
+                _bubbleWait = _bubbleWaitTime;
+                _statementWait = Random.Range(_minStatementWaitTime,_maxStatementWaitTime) + _bubbleWait +_wait;
+                _text.gameObject.SetActive(false);
+                if(_babbleHolder.dialogueIndex < _babbleHolder._dialoguePool.Count){
+                    _babbleHolder.dialogueIndex++;
+                } else{
+                    pause = true;
+                }
+                _statements = _babbleHolder.GetDialogue();
+                index = 0;
             }
-        } else{
-            _speechBubbleAnim.SetBool("babble", false);
-            _bubbleWait = _bubbleWaitTime;
-            _text.gameObject.SetActive(false);
-            _babbleHolder.dialogueIndex++;
-            _statements = _babbleHolder.GetDialogue();
-            index = 0;
         }
     }   
 }
