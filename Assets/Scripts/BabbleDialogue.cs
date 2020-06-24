@@ -13,10 +13,11 @@ public class BabbleDialogue : MonoBehaviour
 
     private float _bubbleWait = 0f;
     private float _wait = 0f;
-    private int _index = 0;
-    private  string[] _statements;
+    private  string[] _statements = null;
     private Animator _speechBubbleAnim = null;
     private BabbleHolder _babbleHolder = null;
+
+    public int index = 0;
     
     
     void Awake()
@@ -33,15 +34,15 @@ public class BabbleDialogue : MonoBehaviour
 
     void Update()
     {   
-        if(_index < _statements.Length){
+        if(index < _statements.Length){
             _speechBubbleAnim.SetBool("babble", true);
             _bubbleWait -= Time.deltaTime;
             if(_bubbleWait <= 0f){
                 _text.gameObject.SetActive(true);
-                _text.text = _statements[_index];
+                _text.text = _statements[index];
                 _wait -= Time.deltaTime;
                 if(_wait <= 0f){
-                    _index++;
+                    index++;
                     _wait = _waitTime;
                 }
             }
@@ -51,7 +52,7 @@ public class BabbleDialogue : MonoBehaviour
             _text.gameObject.SetActive(false);
             _babbleHolder.dialogueIndex++;
             _statements = _babbleHolder.GetDialogue();
-            _index = 0;
+            index = 0;
         }
     }   
 }

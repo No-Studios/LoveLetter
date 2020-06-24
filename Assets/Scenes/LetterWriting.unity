@@ -993,19 +993,39 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bbfdafdc8de614543b03288013b1fb79, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _dialogue0:
-  - Ah yes it is time to sit down
-  - 'My inner poet to guide me!! '
-  - I will write to my love!!!
-  - Guinivere!!!
-  - Ohhh!!!!!
-  _dialogue1:
-  - Ohh
-  - This is brillent....
-  _dialogue2:
-  - Humm
-  - This time for sure..
+  _IntroDialogue:
+  - fuck
+  - oh
+  _randDialogue0:
+  - sup
+  - yo
+  _randDialogue1:
+  - adskjfl
+  - alskdfj
+  - aksdjf
+  _randDialogue2:
+  - asdkl
+  - aksdnfoab
+  _randDialogue3:
+  - akdsfl
+  - aksd
+  _randDialogue4:
+  - aksd
+  - andlnf
+  _randDialogue5:
+  - ak sdnfa
+  - alknsdf
+  _windowDialogue0:
+  - window
+  - windoww
+  _windowDialogue1:
+  - window 1
+  - window 11
+  _windowDialogue2:
+  - window 2
+  - window 22
   dialogueIndex: 0
+  up: 0
 --- !u!114 &448401794
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1022,6 +1042,7 @@ MonoBehaviour:
   _speechBubble: {fileID: 448401792}
   _waitTime: 1
   _bubbleWaitTime: 1.5
+  index: 0
 --- !u!95 &448401795
 Animator:
   serializedVersion: 3
