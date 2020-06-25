@@ -11,9 +11,12 @@ public class BabbleDialogue : MonoBehaviour
     [SerializeField] private float _bubbleWaitTime = 0f;
     [SerializeField] private float _minStatementWaitTime = 5f;
     [SerializeField] private float _maxStatementWaitTime = 5f;
-    
-    
-    
+
+    [SerializeField] public AudioClip[] clips; // audio clip array!!!!!
+    private AudioSource audioSource = null;    // need an audio source attached!!!!!!
+
+
+
     private float _bubbleWait = 0f;
     private float _wait = 0f;
     private float _statementWait = 0f;
@@ -28,6 +31,7 @@ public class BabbleDialogue : MonoBehaviour
     
     void Awake()
     {
+        audioSource = GetComponent<AudioSource>();
         _wait = _waitTime;
         _speechBubbleAnim = GetComponent<Animator>();
         _text.gameObject.SetActive(false);
@@ -50,6 +54,10 @@ public class BabbleDialogue : MonoBehaviour
                     if(_bubbleWait <= 0f){
                         _text.gameObject.SetActive(true);
                         _text.text = _statements[index];
+
+                        AudioClip clip = GetRandomClip();                    //play voice stuff
+                        audioSource.PlayOneShot(clip);                       //!!!!!!!!!!
+
                         _wait -= Time.deltaTime;
                         if(_wait <= 0f){
                             index++;
@@ -94,6 +102,14 @@ public class BabbleDialogue : MonoBehaviour
             }
         }  */
     }
+
+
+    private AudioClip GetRandomClip()                                        // random clip function
+    {
+        return clips[UnityEngine.Random.Range(0, clips.Length)];
+    }
+
+
 }
     
 

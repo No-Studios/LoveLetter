@@ -20,7 +20,7 @@ public class writingSound : MonoBehaviour
         if (Input.anyKeyDown)
         {
 
-            if (Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.DownArrow))
+            if (Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.DownArrow) || Input.GetKeyDown(KeyCode.Space))
             {
 
             }
