@@ -17,8 +17,10 @@ public class TypeInput : MonoBehaviour
     List<string> typedLetters;
     List<string> typedDisplay; 
     bool wordCheckCreated = false;
-    bool wordChanged = false; 
+    public bool wordChanged = false; 
     string actualType = "";
+    public bool goingToNextLine = false;
+    public bool removingLast = false; 
     // Start is called before the first frame update
     void Start()
     {
@@ -38,50 +40,63 @@ public class TypeInput : MonoBehaviour
         {
             foreach (char letter in Input.inputString)
             {
-                Debug.Log(orderNum + " : " + letter);
-                if (currentChar == txtPnl.panel_text.text.Length - 1)
+                /*
+                if (currentChar == txtPnl.panel_text.text.Length - 2)
                 {
-                    //GameManager.instance.change_input_panel = orderNum + 1;
-                    GameManager.instance.ActivatePanel(orderNum + 1, false);
-                    break;
+                    Debug.Log("going to next line");
+                    Debug.Log(txtPnl.panel_text.text.Length);
+                    goingToNextLine = true; 
 
                 }
+                */
                 if (letter == '\b') // has backspace/delete been pressed?
                 {
-                    if (text.text.Length != 0)
+                    if (text.text.Length != 0 && !removingLast)
                     {
+                        Debug.Log("removing");
                         typedLetters.RemoveAt(typedLetters.Count - 1);
                         //typedDisplay.RemoveAt(typedDisplay.Count - 1);
                         //text.text = text.text.Substring(0, text.text.Length - 1);
                         currentChar--;
                     }
-                    
-                    if(orderNum != 0 && text.text.Length == 0)
+
+                    else if (orderNum != 0 && text.text.Length == 0)
                     {
+                        Debug.Log("Ordern Num " + orderNum);
                         GameManager.instance.ActivatePanel(orderNum - 1, true);
-                        break; 
+                        break;
                     }
+                    wordChanged = true; 
                 }
-                else
+                else if (letter != '\n')
                 {
 
 
-                    if (letter != txtPnl.panel_text.text[currentChar])
-                    {
-                        typedLetters.Add("<color=red>" + letter + "</color>");
-                    }
-                    else
-                    {
-                        typedLetters.Add("" + letter);
-                    }
+                        if (letter != txtPnl.panel_text.text[currentChar])
+                        {
+                            typedLetters.Add("<color=red>" + letter + "</color>");
+                        }
+                        else
+                        {
+                            typedLetters.Add("" + letter);
+                        }
+                        currentChar++;
+
+                        if (currentChar == txtPnl.panel_text.text.Length - 1)
+                        {
+                            GameManager.instance.ActivatePanel(orderNum + 1, false);
+                        }
+                        wordChanged = true;
+
+                    
 
 
                     //typedLetters.Add(""+letter);
                     //typedDisplay.Add("" + letter);
-                    currentChar++;
-                    
+
+
                 }
-                wordChanged = true;
+                
             }
 
             if (wordChanged)
@@ -92,39 +107,17 @@ public class TypeInput : MonoBehaviour
                     newString += l;
                 }
                 text.text = newString;
+                //if(goingToNextLine == true
                 wordChanged = false; 
             }
-            /*
-            if(currentChar >= GameManager.instance.space_breaks[orderNum][currentSpaceBreak])
-            {
-                Debug.Log("current text" + text.text);
-                //Debug.Log("currentChar " + currentChar + "currentSpace)
-                if (currentSpaceBreak == 0 && text.text.Substring(currentSpaceBreak, GameManager.instance.space_breaks[orderNum][currentSpaceBreak]) != txtHandler.words[currentSpaceBreak])
-                {
-                    string first = text.text.Insert(GameManager.instance.space_breaks[orderNum][currentSpaceBreak] - 1, "</color>");
-                    string second = text.text.Insert(currentSpaceBreak, "<color=red>");
-                    text.text = second; 
-                }
-                else if (text.text.Substring(GameManager.instance.space_breaks[orderNum][currentSpaceBreak] + 1, GameManager.instance.space_breaks[orderNum][currentSpaceBreak]) != txtHandler.words[currentSpaceBreak])
-                {
-                    string first = text.text.Insert(GameManager.instance.space_breaks[orderNum][currentSpaceBreak] - 1, "</color>");
-                    string second = text.text.Insert(currentSpaceBreak, "<color=red>");
-                    text.text = second;
-                }
-                currentSpaceBreak++; 
-
-            }
-            if(currentSpaceBreak != 0 && currentChar < GameManager.instance.space_breaks[orderNum][currentSpaceBreak - 1])
-            {
-                currentSpaceBreak--; 
-            }*/
-
         }
     }
 
     public void RemoveLast()
     {
         typedLetters.RemoveAt(typedLetters.Count - 1);
+        wordChanged = true;
         currentChar--;
+        removingLast = false; 
     }
 }
