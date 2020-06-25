@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class BabbleHolder : MonoBehaviour
 {
-    [SerializeField] private string[] _IntroDialogue = null;
     [SerializeField] private string[] _randDialogue0 = null;
     [SerializeField] private string[] _randDialogue1 = null;
     [SerializeField] private string[] _randDialogue2 = null;
@@ -32,17 +31,17 @@ public class BabbleHolder : MonoBehaviour
     void Awake()
     {
         _babbleDialogue = GetComponent<BabbleDialogue>();
-        _dialogueReturn = _IntroDialogue;
+        //_dialogueReturn = _IntroDialogue;
         _dialoguePool = new List<string[]>();
         _dialoguePool.Add(_randDialogue0);
         _dialoguePool.Add(_randDialogue1);
-        /*_dialoguePool.Add(_randDialogue2);
+        _dialoguePool.Add(_randDialogue2);
         _dialoguePool.Add(_randDialogue3);
         _dialoguePool.Add(_randDialogue4);
         _dialoguePool.Add(_randDialogue5);
         _dialoguePool.Add(_windowDialogue0);
         _dialoguePool.Add(_windowDialogue1);
-        _dialoguePool.Add(_windowDialogue2);*/
+        _dialoguePool.Add(_windowDialogue2);
         _dialoguePool.Add(_null);
         _dialoguePool.Add(_null0);
 

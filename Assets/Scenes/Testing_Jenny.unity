@@ -1419,6 +1419,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: e39d5d51262240343913bd0398d4f952, type: 3}
   - {fileID: 8300000, guid: b2cbc512afea2f8438bfa6fd74fa22d4, type: 3}
   - {fileID: 8300000, guid: 5fb0d9087401fbe4db610b2c2a7db289, type: 3}
+  _babbleHolder: {fileID: 1165531450}
   index: 0
   pause: 0
 --- !u!114 &1165531450
@@ -1433,18 +1434,30 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bbfdafdc8de614543b03288013b1fb79, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _IntroDialogue: []
-  _randDialogue0: []
-  _randDialogue1: []
-  _randDialogue2: []
-  _randDialogue3: []
-  _randDialogue4: []
-  _randDialogue5: []
-  _windowDialogue0: []
-  _windowDialogue1: []
-  _windowDialogue2: []
-  _null: []
-  _null0: []
+  _IntroDialogue:
+  - sdf
+  _randDialogue0:
+  - adsafd
+  _randDialogue1:
+  - asdfadsf
+  _randDialogue2:
+  - asdfdadfs
+  _randDialogue3:
+  - asdfadsfadsf
+  _randDialogue4:
+  - asdfasdfsdsfd
+  _randDialogue5:
+  - asdfdsafsd
+  _windowDialogue0:
+  - asdfasdf
+  _windowDialogue1:
+  - asdfas
+  _windowDialogue2:
+  - asdfads
+  _null:
+  - asdfas
+  _null0:
+  - asdfasdf
   dialogueIndex: 0
 --- !u!82 &1165531451
 AudioSource:

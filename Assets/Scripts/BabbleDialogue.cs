@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 public class BabbleDialogue : MonoBehaviour
 {
+    [SerializeField] private string[] _IntroDialogue = null;
     [SerializeField] private Text _text = null;
     [SerializeField] private GameObject _speechBubble = null;
     [SerializeField] private float _waitTime = 0f;
@@ -22,7 +23,7 @@ public class BabbleDialogue : MonoBehaviour
     private float _statementWait = 0f;
     private  string[] _statements = null;
     private Animator _speechBubbleAnim = null;
-    private BabbleHolder _babbleHolder = null;
+    [SerializeField] private BabbleHolder _babbleHolder = null;
     private bool _passwordActive = false;
 
     [HideInInspector] public int index = 0;
@@ -37,8 +38,8 @@ public class BabbleDialogue : MonoBehaviour
         _text.gameObject.SetActive(false);
         _speechBubble.SetActive(true);
         _bubbleWait = _bubbleWaitTime;
-        _babbleHolder = GetComponent<BabbleHolder>();
-        _statements = _babbleHolder.GetDialogue();
+        //_babbleHolder = GetComponent<BabbleHolder>();
+        _statements = _IntroDialogue;
         _statementWait = 0;
         //AnimationClip clips = anim.runtimeAnimatorController.animationClips;
     }
@@ -55,8 +56,9 @@ public class BabbleDialogue : MonoBehaviour
                         _text.gameObject.SetActive(true);
                         _text.text = _statements[index];
 
-                        AudioClip clip = GetRandomClip();                    //play voice stuff
-                        audioSource.PlayOneShot(clip);                       //!!!!!!!!!!
+                        AudioClip clip = clips[Random.Range(0, clips.Length)];                 //play voice stuff
+                        audioSource.PlayOneShot(clip);  
+                                             //!!!!!!!!!!
 
                         _wait -= Time.deltaTime;
                         if(_wait <= 0f){
@@ -106,7 +108,7 @@ public class BabbleDialogue : MonoBehaviour
 
     private AudioClip GetRandomClip()                                        // random clip function
     {
-        return clips[UnityEngine.Random.Range(0, clips.Length)];
+        return clips[Random.Range(0, clips.Length)];
     }
 
 
