@@ -11,7 +11,7 @@ public class BabbleDialogue : MonoBehaviour
     [SerializeField] private float _bubbleWaitTime = 0f;
     [SerializeField] private float _minStatementWaitTime = 5f;
     [SerializeField] private float _maxStatementWaitTime = 5f;
-    [SerializeField] private InputField _passwordInput = null;
+    
     
     
     private float _bubbleWait = 0f;
@@ -42,9 +42,7 @@ public class BabbleDialogue : MonoBehaviour
     void Update()
     {   
         if(_babbleHolder.dialogueIndex < _babbleHolder._dialoguePool.Count - 1 && _passwordActive == false){
-            if (pause == false){
                 _statementWait -= Time.deltaTime;
-            }
             if(_statementWait <= 0f){
                 if(index < _statements.Length && pause == false){
                     _speechBubbleAnim.SetBool("babble", true);
@@ -68,13 +66,12 @@ public class BabbleDialogue : MonoBehaviour
                     index = 0;
                 }
             }
-        } else{
-            pause = true;
         }
 
 
 
-        if(Input.GetKeyDown(KeyCode.Escape) && _passwordActive == false){
+        /*if(Input.GetKeyDown(KeyCode.Escape) && _passwordActive == false){
+                print("pressed");
                 _passwordActive = true;
             }else if(Input.GetKeyDown(KeyCode.Escape) && _passwordActive == true){  
                 _speechBubbleAnim.SetBool("babble", false);
@@ -86,7 +83,7 @@ public class BabbleDialogue : MonoBehaviour
         if (_passwordActive == true){
             if(_speechBubbleAnim.GetBool("babble") == false){
                 _speechBubbleAnim.SetBool("babble", true);
-                _bubbleWait -= Time.deltaTime;
+                //_bubbleWait -= Time.deltaTime;
             }
             if(_bubbleWait <= 0f){
                 _passwordInput.gameObject.SetActive(true); 
@@ -95,7 +92,7 @@ public class BabbleDialogue : MonoBehaviour
                     print("fuck yeah dude");
                 }
             }
-        }  
+        }  */
     }
 }
     
