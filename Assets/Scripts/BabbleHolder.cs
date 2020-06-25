@@ -17,6 +17,7 @@ public class BabbleHolder : MonoBehaviour
     [SerializeField] private string[] _windowDialogue2 = null;
 
     [SerializeField] private string[] _null = null;
+    [SerializeField] private string[] _null0 = null;
 
     [HideInInspector] public int dialogueIndex = 0;
     //[HideInInspector] public bool up = false;
@@ -35,14 +36,16 @@ public class BabbleHolder : MonoBehaviour
         _dialoguePool = new List<string[]>();
         _dialoguePool.Add(_randDialogue0);
         _dialoguePool.Add(_randDialogue1);
-        _dialoguePool.Add(_randDialogue2);
+        /*_dialoguePool.Add(_randDialogue2);
         _dialoguePool.Add(_randDialogue3);
         _dialoguePool.Add(_randDialogue4);
         _dialoguePool.Add(_randDialogue5);
         _dialoguePool.Add(_windowDialogue0);
         _dialoguePool.Add(_windowDialogue1);
-        _dialoguePool.Add(_windowDialogue2);
+        _dialoguePool.Add(_windowDialogue2);*/
         _dialoguePool.Add(_null);
+        _dialoguePool.Add(_null0);
+
     }
     public void Update()
     {
