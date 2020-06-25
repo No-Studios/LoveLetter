@@ -1045,7 +1045,6 @@ MonoBehaviour:
   _bubbleWaitTime: 1.5
   _minStatementWaitTime: 0
   _maxStatementWaitTime: 0
-  _passwordInput: {fileID: 1428463490}
   index: 0
   pause: 0
 --- !u!95 &448401795
@@ -2603,6 +2602,7 @@ GameObject:
   - component: {fileID: 1449529943}
   - component: {fileID: 1449529947}
   - component: {fileID: 1449529946}
+  - component: {fileID: 1449529948}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -2707,6 +2707,19 @@ MonoBehaviour:
   cam: {fileID: 1449529942}
   windowUi: {fileID: 237196488}
   deskUi: {fileID: 868079679}
+--- !u!114 &1449529948
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1449529942}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f0d03fd57f5abf04c830c7416374df1b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _passwordInput: {fileID: 1428463490}
 --- !u!1 &1457065912
 GameObject:
   m_ObjectHideFlags: 0
