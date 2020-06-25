@@ -18,6 +18,7 @@ public class GameManager : MonoBehaviour
 
     public TextHandler txtHanlder; 
     public static GameManager instance = null;
+    public ScrollCanvas sc; 
 
     public bool changing = false; 
 
@@ -104,14 +105,22 @@ public class GameManager : MonoBehaviour
             //current_panel.currentChar--;
             prev_panel.transform.parent.gameObject.SetActive(false);
             current_panel.RemoveLast();
-            current_panel.goingToNextLine = false; 
+            current_panel.goingToNextLine = false;
+            sc.MoveCanvasBack();
+            //sc.multiplier -= 2; 
         }
         else
         {
+
             current_panel.transform.parent.gameObject.SetActive(true);
             changing = true;
             prev_panel.removingLast = true;
-
+            //if(orderNum % 3 == 0 && orderNum != 0)
+            //{
+                sc.MoveCanvas();
+            //}
+            
+            //sc.multiplier += .2f; 
 
         }
     }
