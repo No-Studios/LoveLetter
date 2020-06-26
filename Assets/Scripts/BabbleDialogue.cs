@@ -56,7 +56,7 @@ public class BabbleDialogue : MonoBehaviour
                         _text.gameObject.SetActive(true);
                         _text.text = _statements[index];
 
-                        AudioClip clip = clips[Random.Range(0, clips.Length-1)];                 //play voice stuff
+                        AudioClip clip = clips[Random.Range(0, clips.Length)];                 //play voice stuff
                         audioSource.PlayOneShot(clip);  
                                              //!!!!!!!!!!
 
