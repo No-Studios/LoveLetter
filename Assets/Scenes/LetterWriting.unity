@@ -1244,8 +1244,8 @@ MonoBehaviour:
   _speechBubble: {fileID: 448401792}
   _waitTime: 3
   _bubbleWaitTime: 2
-  _minStatementWaitTime: 1
-  _maxStatementWaitTime: 2
+  _minStatementWaitTime: 4
+  _maxStatementWaitTime: 8
   clips:
   - {fileID: 8300000, guid: 3c74f717ac5430941b50699279ba5f0f, type: 3}
   - {fileID: 8300000, guid: e4d4c352719138e4793f44643aa04ffa, type: 3}
