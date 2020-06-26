@@ -11,6 +11,7 @@ public class cameraScript : MonoBehaviour
     bool canPress = true;
     public GameObject windowUi;
     public GameObject deskUi;
+    public bool typeMode = false; 
 
     // Start is called before the first frame update
     void Start()
@@ -23,41 +24,61 @@ public class cameraScript : MonoBehaviour
     void Update()
     {
 
-        if (Input.GetKeyDown(KeyCode.UpArrow) & down == true & canPress == true)
+        if (!typeMode)
         {
-            canPress = false;
-            windowUi.SetActive(false);
-            deskUi.SetActive(true);
-            //Debug.Log("u");
-            cameraShift["camera"].normalizedTime = 0.0f;
+            if (Input.GetKeyDown(KeyCode.UpArrow) & down == true & canPress == true)
+            {
+                canPress = false;
+                windowUi.SetActive(false);
+                deskUi.SetActive(true);
+                //Debug.Log("u");
+                cameraShift["camera"].normalizedTime = 0.0f;
 
-            //cameraShift["camera"].normalizedSpeed = 1.0f;
-            cameraShift["camera"].normalizedSpeed = .25f;
-            cameraShift.Play("camera");
-           
-            
-            //cameraShift.Stop();
+                //cameraShift["camera"].normalizedSpeed = 1.0f;
+                cameraShift["camera"].normalizedSpeed = .25f;
+                cameraShift.Play("camera");
 
-            down = false;
+
+                //cameraShift.Stop();
+
+                down = false;
+
+            }
+
+            if (Input.GetKeyDown(KeyCode.DownArrow) & down == false & canPress == true)
+            {
+                canPress = false;
+                // Debug.Log("d");
+                windowUi.SetActive(true);
+                deskUi.SetActive(false);
+
+                cameraShift["camera"].normalizedTime = 0.5f;
+
+                cameraShift["camera"].normalizedSpeed = .25f;
+                //cameraShift.Play("camera");
+
+                //cameraShift.Stop();
+
+                down = true;
+            }
+
+            if (Input.GetKeyDown(KeyCode.Tab))
+            {
+                Debug.Log("type cam");
+                cameraShift.Play("TypingCamZoom");
+                typeMode = true; 
+            }
 
         }
-
-        if (Input.GetKeyDown(KeyCode.DownArrow) & down == false & canPress == true)
+        else
         {
-            canPress = false;
-            // Debug.Log("d");
-            windowUi.SetActive(true);
-            deskUi.SetActive(false);
-
-            cameraShift["camera"].normalizedTime = 0.5f;
-
-            cameraShift["camera"].normalizedSpeed = .25f;
-            //cameraShift.Play("camera");
-           
-            //cameraShift.Stop();
-            
-            down = true;
+            if (Input.GetKeyDown(KeyCode.Tab))
+            {
+                cameraShift.Play("typeToReg");
+                typeMode = false;
+            }
         }
+
 
 
 

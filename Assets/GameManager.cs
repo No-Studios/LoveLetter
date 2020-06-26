@@ -18,8 +18,10 @@ public class GameManager : MonoBehaviour
 
     public TextHandler txtHanlder; 
     public static GameManager instance = null;
-    public ScrollCanvas sc; 
+    public ScrollCanvas sc;
 
+    public int currentLetter = 0; 
+    public LetterFinish finLetter; 
     public bool changing = false; 
 
 
@@ -100,13 +102,29 @@ public class GameManager : MonoBehaviour
         prev_panel = current_panel;
         current_panel = FindPanel(orderNum);
         current_panel.isCurrentBox = true;
+        if(current_input_panel == input_panels.Length - 1)
+        {
+            Debug.Log("Helllo");
+            EndLetter();
+            return;
+        }
+        else
+        {
+            Debug.Log("Naw");
+        }
+
         if (backwards)
         {
             //current_panel.currentChar--;
             prev_panel.transform.parent.gameObject.SetActive(false);
             current_panel.RemoveLast();
             current_panel.goingToNextLine = false;
-            sc.MoveCanvasBack();
+            if(current_input_panel % 4 == 0 && orderNum != 0)
+            {
+                Debug.Log("going back " + orderNum);
+                sc.MoveCanvasBack();
+
+            }
             //sc.multiplier -= 2; 
         }
         else
@@ -115,14 +133,31 @@ public class GameManager : MonoBehaviour
             current_panel.transform.parent.gameObject.SetActive(true);
             changing = true;
             prev_panel.removingLast = true;
-            //if(orderNum % 3 == 0 && orderNum != 0)
-            //{
+            if(orderNum % 4 == 0 && orderNum != 0)
+            {
                 sc.MoveCanvas();
-            //}
+            }
             
             //sc.multiplier += .2f; 
 
         }
+    }
+
+    public void EndLetter()
+    {
+        //finLetter.EndLetter();
+        GoToNextLetter();
+        
+    }
+
+    public void GoToNextLetter()
+    {
+        currentLetter++; 
+        current_input_panel = 0;
+        txtHanlder.CreateWordList(currentLetter);
+        sc.transform.position = sc.originalPosition; 
+        input_panels_found = false;
+
     }
 
     

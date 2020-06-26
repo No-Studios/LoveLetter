@@ -20,7 +20,8 @@ public class TypeInput : MonoBehaviour
     public bool wordChanged = false; 
     string actualType = "";
     public bool goingToNextLine = false;
-    public bool removingLast = false; 
+    public bool removingLast = false;
+    bool finishedLeter;
     // Start is called before the first frame update
     void Start()
     {
@@ -72,6 +73,8 @@ public class TypeInput : MonoBehaviour
                 {
 
 
+                    if (currentChar < txtPnl.panel_text.text.Length)
+                    {
                         if (letter != txtPnl.panel_text.text[currentChar])
                         {
                             typedLetters.Add("<color=red>" + letter + "</color>");
@@ -80,13 +83,20 @@ public class TypeInput : MonoBehaviour
                         {
                             typedLetters.Add("" + letter);
                         }
-                        currentChar++;
+                    }
+                    currentChar++;
 
-                        if (currentChar == txtPnl.panel_text.text.Length - 1)
-                        {
-                            GameManager.instance.ActivatePanel(orderNum + 1, false);
-                        }
-                        wordChanged = true;
+                    if (currentChar == txtPnl.panel_text.text.Length - 1 && orderNum != GameManager.instance.input_panels.Length) 
+                    {
+                        Debug.Log("come on dude " + orderNum);
+                        GameManager.instance.ActivatePanel(orderNum + 1, false);
+                    }
+                    else if (orderNum == GameManager.instance.input_panels.Length - 1 && currentChar == txtPnl.panel_text.text.Length)
+                    {
+                        Debug.Log("finished");
+                        finishedLeter = true;                             
+                    }
+                    wordChanged = true;
 
                     
 
@@ -109,6 +119,10 @@ public class TypeInput : MonoBehaviour
                 text.text = newString;
                 //if(goingToNextLine == true
                 wordChanged = false; 
+            }
+            if (finishedLeter)
+            {
+                GameManager.instance.EndLetter();
             }
         }
     }

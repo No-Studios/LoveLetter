@@ -6,12 +6,17 @@ using UnityEngine;
 
 public class WritingParser : MonoBehaviour
 {
-    public string fileName; 
-    public List<string> parsedWords;
+    public string fileName;
+    public string[] fileNames;
+    public List<List<string>> parsedWords;
     // Start is called before the first frame update
     private void Awake()
     {
-        parsedWords = File.ReadAllText("Assets/" + fileName + ".txt").Split(' ').ToList();
+        parsedWords = new List<List<string>>();
+        foreach (string f in fileNames)
+        {
+            parsedWords.Add(File.ReadAllText("Assets/" + f + ".txt").Split(' ').ToList());
+        }
 
     }
     void Start()

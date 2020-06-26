@@ -12,7 +12,7 @@ public class LetterFinish : MonoBehaviour
         _kiss.SetActive(false);
     }
     
-    void EndLetter()
+    public void EndLetter()
     {
         _kiss.SetActive(true);
         _letterToss.SetBool("finished", true);
