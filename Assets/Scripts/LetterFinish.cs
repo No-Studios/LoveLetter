@@ -6,6 +6,7 @@ public class LetterFinish : MonoBehaviour
 {
    [SerializeField] private Animator _letterToss;
    [SerializeField] private GameObject _kiss;
+   [SerializeField] private LetterSpawn _letterSpawn;
 
     void Awake()
     {
@@ -16,5 +17,6 @@ public class LetterFinish : MonoBehaviour
     {
         _kiss.SetActive(true);
         _letterToss.SetBool("finished", true);
+        _letterSpawn.SpawnLetter();
     }
 }
