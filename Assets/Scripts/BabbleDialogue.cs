@@ -46,8 +46,41 @@ public class BabbleDialogue : MonoBehaviour
 
     void Update()
     {   
+        if (_statements == _IntroDialogue){
+            _statementWait -= Time.deltaTime;
+            if(_statementWait <= 0f){
+                if(index < _statements.Length && pause == false){
+                    _speechBubbleAnim.SetBool("babble", true);
+                    _bubbleWait -= Time.deltaTime;
+                    if(_bubbleWait <= 0f){
+                        _text.gameObject.SetActive(true);
+                        _text.text = _statements[index];
+
+                        AudioClip clip = clips[Random.Range(0, clips.Length-1)];                 //play voice stuff
+                        audioSource.PlayOneShot(clip);  
+                                             //!!!!!!!!!!
+
+                        _wait -= Time.deltaTime;
+                        if(_wait <= 0f){
+                            index++;
+                            _wait = _waitTime;
+                        }
+                    }
+                } else if (index >= _statements.Length && pause == false){
+                    _speechBubbleAnim.SetBool("babble", false);
+                    _bubbleWait = _bubbleWaitTime;
+                    _statementWait = Random.Range(_minStatementWaitTime,_maxStatementWaitTime) + _bubbleWait +_wait;
+                    _text.gameObject.SetActive(false);
+                    _statements = _babbleHolder.GetDialogue();
+                    index = 0;
+                }
+            }
+        }
+
+
+                    
         if(_babbleHolder.dialogueIndex < _babbleHolder._dialoguePool.Count - 1 && _passwordActive == false){
-                _statementWait -= Time.deltaTime;
+            _statementWait -= Time.deltaTime;
             if(_statementWait <= 0f){
                 if(index < _statements.Length && pause == false){
                     _speechBubbleAnim.SetBool("babble", true);
@@ -106,10 +139,10 @@ public class BabbleDialogue : MonoBehaviour
     }
 
 
-    private AudioClip GetRandomClip()                                        // random clip function
+    /*private AudioClip GetRandomClip()                                        // random clip function
     {
         return clips[Random.Range(0, clips.Length)];
-    }
+    }*/
 
 
 }
