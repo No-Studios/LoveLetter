@@ -1242,10 +1242,10 @@ MonoBehaviour:
   - And then she will know!!
   _text: {fileID: 1265696926}
   _speechBubble: {fileID: 448401792}
-  _waitTime: 1
-  _bubbleWaitTime: 1.5
-  _minStatementWaitTime: 5
-  _maxStatementWaitTime: 10
+  _waitTime: 3
+  _bubbleWaitTime: 2
+  _minStatementWaitTime: 1
+  _maxStatementWaitTime: 2
   clips:
   - {fileID: 8300000, guid: 3c74f717ac5430941b50699279ba5f0f, type: 3}
   - {fileID: 8300000, guid: e4d4c352719138e4793f44643aa04ffa, type: 3}
@@ -3190,10 +3190,10 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 122
+    m_FontSize: 90
     m_FontStyle: 0
     m_BestFit: 0
-    m_MinSize: 10
+    m_MinSize: 9
     m_MaxSize: 300
     m_Alignment: 0
     m_AlignByGeometry: 0

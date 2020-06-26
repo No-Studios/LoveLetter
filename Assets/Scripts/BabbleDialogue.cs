@@ -8,8 +8,8 @@ public class BabbleDialogue : MonoBehaviour
     [SerializeField] private string[] _IntroDialogue = null;
     [SerializeField] private Text _text = null;
     [SerializeField] private GameObject _speechBubble = null;
-    [SerializeField] private float _waitTime = 0f;
-    [SerializeField] private float _bubbleWaitTime = 0f;
+    [SerializeField] private float _waitTime = 3f;
+    [SerializeField] private float _bubbleWaitTime = 1.5f;
     [SerializeField] private float _minStatementWaitTime = 5f;
     [SerializeField] private float _maxStatementWaitTime = 5f;
 
@@ -18,8 +18,8 @@ public class BabbleDialogue : MonoBehaviour
 
 
 
-    private float _bubbleWait = 0f;
-    private float _wait = 0f;
+    private float _bubbleWait = 1.5f;
+    private float _wait = 3f;
     private float _statementWait = 0f;
     private  string[] _statements = null;
     private Animator _speechBubbleAnim = null;
@@ -40,31 +40,33 @@ public class BabbleDialogue : MonoBehaviour
         _bubbleWait = _bubbleWaitTime;
         //_babbleHolder = GetComponent<BabbleHolder>();
         _statements = _IntroDialogue;
-        _statementWait = 0;
         //AnimationClip clips = anim.runtimeAnimatorController.animationClips;
     }
 
     void Update()
     {   
         if (_statements == _IntroDialogue){
-            _statementWait -= Time.deltaTime;
-            if(_statementWait <= 0f){
-                if(index < _statements.Length && pause == false){
-                    _speechBubbleAnim.SetBool("babble", true);
-                    _bubbleWait -= Time.deltaTime;
-                    if(_bubbleWait <= 0f){
-                        _text.gameObject.SetActive(true);
-                        _text.text = _statements[index];
-                        if(audioSource.isPlaying != true)
-                        {
-                            AudioClip clip = clips[Random.Range(0, clips.Length)];                                                                                   //play voice stuff
-                            audioSource.PlayOneShot(clip);
-                            //Debug.Log("play");
-                        }
-                        _wait -= Time.deltaTime;
-                        if(_wait <= 0f){
-                            index++;
-                            _wait = _waitTime;
+            _bubbleWait -= Time.deltaTime;
+            if(_bubbleWait<= 0f){
+                _statementWait -= Time.deltaTime;
+                if(_statementWait <= 0f){
+                    if(index < _statements.Length && pause == false){
+                        _speechBubbleAnim.SetBool("babble", true);
+                        _bubbleWait -= Time.deltaTime;
+                        if(_bubbleWait <= 0f){
+                            _text.gameObject.SetActive(true);
+                            _text.text = _statements[index];
+                            if(audioSource.isPlaying != true)
+                            {
+                                AudioClip clip = clips[Random.Range(0, clips.Length)];                                                                                   //play voice stuff
+                                audioSource.PlayOneShot(clip);
+                                //Debug.Log("play");
+                            }
+                            _wait -= Time.deltaTime;
+                            if(_wait <= 0f){
+                                index++;
+                                _wait = _waitTime;
+                            }
                         }
                     }
                 } else if (index >= _statements.Length && pause == false){
