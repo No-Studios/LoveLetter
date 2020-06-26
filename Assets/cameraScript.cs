@@ -11,7 +11,8 @@ public class cameraScript : MonoBehaviour
     bool canPress = true;
     public GameObject windowUi;
     public GameObject deskUi;
-    public bool typeMode = false; 
+    public bool typeMode = false;
+    public bool goToLetterView = false; 
 
     // Start is called before the first frame update
     void Start()
@@ -66,7 +67,8 @@ public class cameraScript : MonoBehaviour
             {
                 Debug.Log("type cam");
                 cameraShift.Play("TypingCamZoom");
-                typeMode = true; 
+                typeMode = true;
+                //goToLetterView = true;
             }
 
         }
@@ -76,6 +78,7 @@ public class cameraScript : MonoBehaviour
             {
                 cameraShift.Play("typeToReg");
                 typeMode = false;
+                //goToLetterView = false;
             }
         }
 
@@ -88,5 +91,11 @@ public class cameraScript : MonoBehaviour
         cameraShift["camera"].normalizedSpeed = 0.0f;
         canPress = true;
 
+    }
+
+    public void GoToLetterVoid()
+    {
+        cameraShift.Play("typeToReg");
+        typeMode = false;
     }
 }

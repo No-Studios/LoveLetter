@@ -45,6 +45,7 @@ public class TextHandler : MonoBehaviour
         }
         panel_start = true;
         current_word_index = 0;
+        panel_count = 0;
         TypeInput[] ip = FindObjectsOfType<TypeInput>();
         foreach (TypeInput t in ip) {
             Destroy(t.transform.parent.gameObject);

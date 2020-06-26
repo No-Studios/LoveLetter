@@ -22,7 +22,8 @@ public class GameManager : MonoBehaviour
 
     public int currentLetter = 0; 
     public LetterFinish finLetter; 
-    public bool changing = false; 
+    public bool changing = false;
+    public cameraScript cs; 
 
 
 
@@ -157,6 +158,8 @@ public class GameManager : MonoBehaviour
         txtHanlder.CreateWordList(currentLetter);
         sc.transform.position = sc.originalPosition; 
         input_panels_found = false;
+        cs.GoToLetterVoid();
+
 
     }
 
