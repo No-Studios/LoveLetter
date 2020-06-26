@@ -158,7 +158,7 @@ public class GameManager : MonoBehaviour
         txtHanlder.CreateWordList(currentLetter);
         sc.transform.position = sc.originalPosition; 
         input_panels_found = false;
-        cs.GoToLetterVoid();
+        cs.ExitLetterView();
 
 
     }

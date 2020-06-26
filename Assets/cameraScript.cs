@@ -12,7 +12,9 @@ public class cameraScript : MonoBehaviour
     public GameObject windowUi;
     public GameObject deskUi;
     public bool typeMode = false;
-    public bool goToLetterView = false; 
+    public bool goToLetterView = false;
+    public GameObject ZoomButton;
+    public GameObject RegButton;
 
     // Start is called before the first frame update
     void Start()
@@ -95,7 +97,17 @@ public class cameraScript : MonoBehaviour
 
     public void GoToLetterVoid()
     {
+        cameraShift.Play("TypingCamZoom");
+        ZoomButton.SetActive(false);
+        RegButton.SetActive(true);
+        typeMode = false;
+    }
+    
+    public void ExitLetterView()
+    {
         cameraShift.Play("typeToReg");
+        ZoomButton.SetActive(true);
+        RegButton.SetActive(false);
         typeMode = false;
     }
 }
