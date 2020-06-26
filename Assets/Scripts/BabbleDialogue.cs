@@ -88,11 +88,10 @@ public class BabbleDialogue : MonoBehaviour
                     if(_bubbleWait <= 0f){
                         _text.gameObject.SetActive(true);
                         _text.text = _statements[index];
-
-                        AudioClip clip = clips[Random.Range(0, clips.Length)];                 //play voice stuff
-                        audioSource.PlayOneShot(clip);  
-                                             //!!!!!!!!!!
-
+                        {
+                            AudioClip clip = clips[Random.Range(0, clips.Length)];                                                                                   //play voice stuff
+                            audioSource.PlayOneShot(clip);  
+                        }
                         _wait -= Time.deltaTime;
                         if(_wait <= 0f){
                             index++;
