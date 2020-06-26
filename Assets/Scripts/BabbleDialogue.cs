@@ -58,7 +58,8 @@ public class BabbleDialogue : MonoBehaviour
                         if(audioSource.isPlaying != true)
                         {
                             AudioClip clip = clips[Random.Range(0, clips.Length)];                                                                                   //play voice stuff
-                            audioSource.PlayOneShot(clip);  
+                            audioSource.PlayOneShot(clip);
+                            //Debug.Log("play");
                         }
                         _wait -= Time.deltaTime;
                         if(_wait <= 0f){
