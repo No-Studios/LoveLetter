@@ -10,7 +10,7 @@ public class LetterSpawn : MonoBehaviour
     private float _wait = 2f;
     private int _index = 0;
 
-    void Update()
+    public void SpawnLetter()
     {
         _wait -= Time.deltaTime;
         if(_wait <= 0f){

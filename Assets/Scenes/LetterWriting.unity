@@ -1016,33 +1016,30 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _randDialogue0:
-  - sup
-  - yo
+  - This is....
+  - ' brillent!!'
   _randDialogue1:
-  - adskjfl
-  - alskdfj
-  - aksdjf
+  - This time for sure.....
   _randDialogue2:
-  - asdkl
-  - aksdnfoab
+  - 'Does this sound.. '
+  - Too desperate?
   _randDialogue3:
   - akdsfl
   - aksd
   _randDialogue4:
-  - aksd
-  - andlnf
+  - She will LOVE this...
   _randDialogue5:
-  - ak sdnfa
-  - alknsdf
+  - Is this.. creepy?
+  - No!
+  - It's romantic!!
   _windowDialogue0:
-  - window
-  - windoww
+  - She'll be so impressed!!
   _windowDialogue1:
-  - window 1
-  - window 11
+  - 'This is the '
+  - BEST THING
+  - I have ever written
   _windowDialogue2:
-  - window 2
-  - window 22
+  - Oh this shall be perfect!!
   _null: []
   _null0: []
   dialogueIndex: 0
@@ -1058,15 +1055,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5d49f8ae2e4cab543a036d8d88f8dd3e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _IntroDialogue: []
+  _IntroDialogue:
+  - Today I will do it!!
+  - Today I will woo my lady love!!
+  - She will learn to love me!
+  - I will send her so many letters
+  - And then she will know!!
   _text: {fileID: 1265696926}
   _speechBubble: {fileID: 448401792}
   _waitTime: 1
   _bubbleWaitTime: 1.5
-  _minStatementWaitTime: 0
-  _maxStatementWaitTime: 0
+  _minStatementWaitTime: 5
+  _maxStatementWaitTime: 10
   clips: []
-  _babbleHolder: {fileID: 0}
+  _babbleHolder: {fileID: 448401793}
   index: 0
   pause: 0
 --- !u!95 &448401795
@@ -4446,6 +4448,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _letterToss: {fileID: 0}
   _kiss: {fileID: 0}
+  _letterSpawn: {fileID: 0}
 --- !u!4 &1940543823
 Transform:
   m_ObjectHideFlags: 0

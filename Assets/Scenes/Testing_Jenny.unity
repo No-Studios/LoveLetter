@@ -268,6 +268,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _letterToss: {fileID: 84133376}
   _kiss: {fileID: 878973552}
+  _letterSpawn: {fileID: 1568939283}
 --- !u!1 &379463892
 GameObject:
   m_ObjectHideFlags: 0
@@ -1848,7 +1849,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1317889029
 Transform:
   m_ObjectHideFlags: 0
