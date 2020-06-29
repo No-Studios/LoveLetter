@@ -15,6 +15,7 @@ public class cameraScript : MonoBehaviour
     public bool goToLetterView = false;
     public GameObject ZoomButton;
     public GameObject RegButton;
+    public GameObject CamUI; 
 
     // Start is called before the first frame update
     void Start()
@@ -101,6 +102,7 @@ public class cameraScript : MonoBehaviour
         ZoomButton.SetActive(false);
         RegButton.SetActive(true);
         typeMode = false;
+        CamUI.SetActive(false);
     }
     
     public void ExitLetterView()
@@ -109,5 +111,7 @@ public class cameraScript : MonoBehaviour
         ZoomButton.SetActive(true);
         RegButton.SetActive(false);
         typeMode = false;
+        CamUI.SetActive(true);
+
     }
 }

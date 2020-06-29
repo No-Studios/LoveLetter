@@ -3897,6 +3897,7 @@ MonoBehaviour:
   goToLetterView: 0
   ZoomButton: {fileID: 1772745795}
   RegButton: {fileID: 1028204405}
+  CamUI: {fileID: 1662972312}
 --- !u!114 &1449529948
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4316,7 +4317,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1662972313
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5392,7 +5393,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1940543822
 MonoBehaviour:
   m_ObjectHideFlags: 0
